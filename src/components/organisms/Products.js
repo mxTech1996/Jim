@@ -1,7 +1,6 @@
 'use client';
 import { dataSite } from '@/data';
 import { useCart } from 'ecommerce-mxtech';
-import Link from 'next/link';
 
 const products = dataSite.products;
 export default function ProductShowcase() {

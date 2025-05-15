@@ -1,6 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { CartSectionV2, Button, PaymentsV2 } from 'ecommerce-mxtech';
+import {
+  CartSectionV2,
+  Button,
+  Payments,
+  PaymentsV2,
+  CartSection,
+} from 'ecommerce-mxtech';
 import { useRouter } from 'next/navigation';
 import { FaChevronLeft } from 'react-icons/fa';
 import { pageName } from '@/data';

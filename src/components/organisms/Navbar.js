@@ -1,3 +1,4 @@
+'use client';
 import { dataSite } from '@/data';
 import { useCart } from 'ecommerce-mxtech';
 import { FiShoppingCart } from 'react-icons/fi';
