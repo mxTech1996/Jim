@@ -49,7 +49,7 @@ export const dataSite = {
   address:
     '107, MANZANA 32 LOTE 23, REGION 510, BENITO JUAREZ, CANCUN, QUINTANA ROO, CP 77534',
   description:
-    'We specialize in general mechanical repairs for all makes and models, offering reliable maintenance and diagnostics to keep your vehicle running smoothly.',
+    'We specialize in general mechanical repairs for all makes and models, offering reliable maintenance and diagnostics to keep your vehicle running smoothly. Our certified mechanics are committed to delivering high-quality service with honest pricing and fast turnaround times. Whether you drive a car, pickup, or heavy-duty truck, we have the tools and expertise to handle everything from engine repairs and brake services to oil changes and suspension work. Visit us today and experience top-tier automotive care you can count on.',
   subtitle: 'Reliable Auto & Truck Repair Services You Can Trust',
   image_hero:
     'https://cms-webserver-statics.s3.amazonaws.com/media/websites/jim_1_.jpg',
@@ -118,7 +118,43 @@ export const dataSite = {
         'https://cms-webserver-statics.s3.amazonaws.com/media/services/jim._7.jpg',
     },
   ],
-  references: [],
+  references: [
+    {
+      name: 'Michael Rau',
+      description:
+        'Excellent service! They diagnosed my truck’s engine issue quickly and had it fixed the same day. Honest pricing and friendly staff, highly recommend!',
+      rating: 5,
+      image: null,
+    },
+    {
+      name: 'Jorge Armenta',
+      description:
+        'As a fleet manager, I rely on them to keep our vehicles running smoothly. Their team is professional, efficient, and always communicates clearly. Top notch service',
+      rating: 5,
+      image: null,
+    },
+    {
+      name: 'Luis Mendoza',
+      description:
+        'I had my brakes done here and couldn’t be happier,They explained everything in detail and even showed me the worn out parts. Great experience.',
+      rating: 5,
+      image: null,
+    },
+    {
+      name: 'Tina Romero',
+      description:
+        'Fast, reliable, and affordable. They fixed a suspension issue on my car that other shops couldn’t figure out. I’ll definitely be back.',
+      rating: 5,
+      image: null,
+    },
+    {
+      name: 'David Garcia',
+      description:
+        'Outstanding customer service and quality work. I’ve brought in both my personal car and work trucknever disappointed.',
+      rating: 5,
+      image: null,
+    },
+  ],
   products: [
     {
       id: 738,
