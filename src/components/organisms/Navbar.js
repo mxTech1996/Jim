@@ -1,52 +1,38 @@
-'use client';
-import { useRouter } from 'next/navigation';
-import { navData } from '@/data';
-import { Navbar as NavbarV2, theme } from 'ecommerce-mxtech';
-import { useInformation } from '@/store/useInformation';
+import { dataSite } from '@/data';
+import { FiShoppingCart } from 'react-icons/fi';
 
-const { useToken } = theme;
-
-const Navbar = () => {
-  const { dataSite } = useInformation();
-  const router = useRouter();
-  const {
-    token: { colorPrimary },
-  } = useToken();
-
+export default function CenteredLogoNavbar() {
   return (
-    <NavbarV2
-      linksProps={{
-        variant: 'underline',
-        align: 'left',
-      }}
-      textColor='black'
-      withLogo={true}
-      imageProps={{
-        src: dataSite.iconImage,
-        className: 'w-28',
-      }}
-      styleTitle={{
-        fontWeight: 'bold',
-        fontSize: 16,
-        color: 'black',
-      }}
-      links={navData}
-      onClickProduct={(product) => {
-        router.push(`/product/${product.id}`);
-      }}
-      buttonCartProps={{
-        onClick: () => router.push('/my-cart'),
-      }}
-      buttonContactProps={{
-        onClick: () => router.push('/more-information'),
-      }}
-      onRedirect={(path) => router.push(path)}
-      styleHeader={{
-        height: 100,
-        color: 'black',
-      }}
-    />
-  );
-};
+    <header className='sticky top-0 bg-white z-50 shadow-sm'>
+      <nav className='max-w-7xl mx-auto flex items-center justify-between px-4 py-3'>
+        {/* Left Links */}
+        <div className='flex items-center gap-8'>
+          <span className='text-xs text-gray-400'>01</span>{' '}
+          <button>Demos</button>
+          <span className='text-xs text-gray-400'>02</span>{' '}
+          <button>Company</button>
+          <span className='text-xs text-gray-400'>03</span>{' '}
+          <button>Compare</button>
+        </div>
 
-export default Navbar;
+        {/* Center Logo */}
+        <div className='text-xl font-bold row'>
+          <img src={dataSite.iconImage} className='h-24' />
+        </div>
+
+        {/* Right Links + Cart */}
+        <div className='flex items-center gap-8'>
+          <span className='text-xs text-gray-400'>04</span>{' '}
+          <button>All Pages</button>
+          <span className='text-xs text-gray-400'>05</span>{' '}
+          <button>Services</button>
+          <span className='text-xs text-gray-400'>06</span>{' '}
+          <button>Get Started</button>
+          <button aria-label='Cart' className='ml-4 text-xl'>
+            <FiShoppingCart />
+          </button>
+        </div>
+      </nav>
+    </header>
+  );
+}
