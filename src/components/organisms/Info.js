@@ -10,7 +10,7 @@ const fadeInUp = {
 
 export default function InfoSection() {
   return (
-    <section className='bg-[#f0fdf4] py-12 px-6 rounded-xl'>
+    <section id='info' className='bg-[#f0fdf4] py-12 px-6 rounded-xl'>
       <div className='max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
         <motion.div
           initial='hidden'
@@ -29,10 +29,16 @@ export default function InfoSection() {
             and maintenance solutions.
           </p>
           <div className='flex gap-4'>
-            <button className='bg-black text-white px-4 py-2 rounded-lg'>
+            <button
+              onClick={() => (window.location.href = '#services')}
+              className='bg-black text-white px-4 py-2 rounded-lg'
+            >
               Our Services
             </button>
-            <button className='border border-black px-4 py-2 rounded-lg'>
+            <button
+              onClick={() => (window.location.href = '#values')}
+              className='border border-black px-4 py-2 rounded-lg'
+            >
               Why Choose Us
             </button>
           </div>

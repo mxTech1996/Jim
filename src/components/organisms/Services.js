@@ -1,62 +1,94 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { dataSite } from '@/data';
+import { useState } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const services = dataSite.services;
+export default function ServiceCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(1); // Center item by default
 
-export default function CarouselWithDepthEffect() {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const visibleItems = services.slice(activeIndex, activeIndex + 3);
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? services.length - 1 : prev - 1));
+  const goNext = () => {
+    if (activeIndex + 3 < services.length) {
+      setActiveIndex(activeIndex + 1);
+    }
   };
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+  const goPrev = () => {
+    if (activeIndex > 0) {
+      setActiveIndex(activeIndex - 1);
+    }
   };
 
   const handleSelect = (index) => {
-    setActiveIndex(index);
+    if (index < activeIndex) {
+      setActiveIndex(index);
+      setSelectedIndex(index);
+    } else if (index > activeIndex + 2) {
+      setActiveIndex(index - 2);
+      setSelectedIndex(index);
+    } else {
+      setSelectedIndex(index);
+    }
   };
 
   return (
-    <section className='flex flex-col items-center space-y-6'>
-      <h2 className='text-3xl font-bold text-center mb-4'>Our Services</h2>
-      <div className='relative flex items-center justify-center space-x-4'>
-        <button onClick={handlePrev}>&lt;</button>
-        <div className='flex space-x-4'>
-          {services.map((service, index) => {
-            const isActive = index === activeIndex;
+    <>
+      <div className='pt-32 bg-[#f0fdf4] px-6 l width-full text-center'>
+        <h2 className='self-center text-3xl font-bold'>Our Services</h2>
+      </div>
+
+      <div
+        id='services'
+        className='bg-[#f0fdf4] relative flex items-center justify-center gap-4 py-20'
+      >
+        <button
+          onClick={goPrev}
+          disabled={activeIndex === 0}
+          className='absolute left-48 top-1/2 -translate-y-1/2 bg-black text-white p-2 rounded-full disabled:opacity-50'
+        >
+          <FaChevronLeft />
+        </button>
+
+        <div className='flex gap-4 overflow-hidden'>
+          {visibleItems.map((item, idx) => {
+            const globalIndex = activeIndex + idx;
+            const isActive = globalIndex === selectedIndex;
             return (
-              <motion.div
-                key={service.title}
-                onClick={() => handleSelect(index)}
-                whileHover={{ scale: 1.05 }}
-                className={`relative rounded-xl overflow-hidden cursor-pointer transition-all duration-500 ${
-                  isActive
-                    ? 'w-[300px] h-[450px] scale-100 shadow-xl'
-                    : 'w-[200px] h-[350px] scale-90 opacity-50 blur-sm'
+              <div
+                key={item.title}
+                onClick={() => handleSelect(globalIndex)}
+                className={`relative rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                  isActive ? 'w-64 h-96' : 'w-48 h-80 opacity-60'
                 }`}
               >
                 <img
-                  src={service.image}
-                  alt={service.title}
+                  src={item.image}
+                  alt={item.title}
                   className='w-full h-full object-cover'
                 />
                 {isActive && (
-                  <div className='absolute bottom-0 bg-black/60 text-white p-4 w-full'>
-                    <h3 className='font-bold'>{service.title}</h3>
-                    <p className='text-sm'>{service.description}</p>
+                  <div className='absolute bottom-0 left-0 right-0 bg-black/70 text-white p-4 text-sm'>
+                    <h3 className='font-bold'>{item.title}</h3>
+                    <p>{item.description}</p>
                   </div>
                 )}
-              </motion.div>
+              </div>
             );
           })}
         </div>
-        <button onClick={handleNext}>&gt;</button>
+
+        <button
+          onClick={goNext}
+          disabled={activeIndex + 3 >= services.length}
+          className='absolute right-48 top-1/2 -translate-y-1/2 bg-black text-white p-2 rounded-full disabled:opacity-50'
+        >
+          <FaChevronRight />
+        </button>
       </div>
-    </section>
+    </>
   );
 }

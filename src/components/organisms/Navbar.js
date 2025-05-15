@@ -1,18 +1,30 @@
 import { dataSite } from '@/data';
+import { useCart } from 'ecommerce-mxtech';
 import { FiShoppingCart } from 'react-icons/fi';
 
 export default function CenteredLogoNavbar() {
+  const { products } = useCart();
   return (
     <header className='sticky top-0 bg-white z-50 shadow-sm'>
       <nav className='max-w-7xl mx-auto flex items-center justify-between px-4 py-3'>
         {/* Left Links */}
         <div className='flex items-center gap-8'>
           <span className='text-xs text-gray-400'>01</span>{' '}
-          <button>Demos</button>
+          <button
+            onClick={() => {
+              window.location.href = '/#products';
+            }}
+          >
+            Products
+          </button>
           <span className='text-xs text-gray-400'>02</span>{' '}
-          <button>Company</button>
+          <button onClick={() => (window.location.href = '/#info')}>
+            Company
+          </button>
           <span className='text-xs text-gray-400'>03</span>{' '}
-          <button>Compare</button>
+          <button onClick={() => (window.location.href = '/#services')}>
+            Services
+          </button>
         </div>
 
         {/* Center Logo */}
@@ -23,12 +35,21 @@ export default function CenteredLogoNavbar() {
         {/* Right Links + Cart */}
         <div className='flex items-center gap-8'>
           <span className='text-xs text-gray-400'>04</span>{' '}
-          <button>All Pages</button>
+          <button onClick={() => (window.location.href = '/#values')}>
+            Why Us
+          </button>
           <span className='text-xs text-gray-400'>05</span>{' '}
-          <button>Services</button>
-          <span className='text-xs text-gray-400'>06</span>{' '}
-          <button>Get Started</button>
-          <button aria-label='Cart' className='ml-4 text-xl'>
+          <button onClick={() => (window.location.href = '/more-information')}>
+            Contact Us
+          </button>
+          <button
+            onClick={() => (window.location.href = '/my-cart')}
+            aria-label='Cart'
+            className='ml-4 text-xl relative'
+          >
+            <span className='absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1'>
+              {products.length}
+            </span>
             <FiShoppingCart />
           </button>
         </div>
